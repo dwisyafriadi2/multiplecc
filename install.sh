@@ -93,8 +93,6 @@ fi
 
 # Opsi dinamis untuk bandwidth dan storage
 echo -e "${CYAN}⚙️ Masukkan opsi dinamis untuk bandwidth dan storage:${NC}"
-read -p "Masukkan bandwidth download (dalam MBps): " DOWNLOAD_BANDWIDTH
-read -p "Masukkan bandwidth upload (dalam MBps): " UPLOAD_BANDWIDTH
 read -p "Masukkan kapasitas storage (dalam GB): " STORAGE_CAPACITY
 echo ""
 
@@ -120,7 +118,7 @@ fi
 
 # Mengikat akun dengan IDENTIFIER dan PIN
 echo -e "${YELLOW}🔗 Mengikat akun dengan IDENTIFIER dan PIN...${NC}"
-./multiple-cli bind --bandwidth-download "$DOWNLOAD_BANDWIDTH" --identifier "$IDENTIFIER" --pin "$PIN" --storage "$STORAGE_CAPACITY" --bandwidth-upload "$UPLOAD_BANDWIDTH"
+./multiple-cli bind --bandwidth-download 100 --identifier "$IDENTIFIER" --pin "$PIN" --storage 100 --bandwidth-upload 100
 echo ""
 # join Telegram
 echo -e "${LIGHT_GREEN}✅ Proses selesai.${NC}"
