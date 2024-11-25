@@ -29,6 +29,8 @@ print_banner() {
 print_banner
 sleep 5
 
+
+
 # Warna untuk output
 RED='\033[0;31m'
 LIGHT_GREEN='\033[1;32m'
@@ -37,6 +39,11 @@ LIGHT_BLUE='\033[1;34m'
 MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No color
+
+echo ""
+echo -e "${CYAN}🖥️ Update Software"
+sudo apt update -y
+echo ""
 
 # 🖥️ Cek arsitektur Linux
 ARCH=$(uname -m)
@@ -65,12 +72,13 @@ echo ""
 echo -e "${YELLOW}🔧 Mengatur izin yang diperlukan...${NC}"
 chmod +x multiple-cli
 chmod +x multiple-node
+chmod -R 777 $(pwd)
 echo ""
 
 # Menambahkan PATH ke .bashrc
 echo -e "${LIGHT_BLUE}⚙️ Mengonfigurasi PATH...${NC}"
-echo "PATH=\$PATH:$(pwd)" >> ~/.bashrc
-source ~/.bashrc
+echo "PATH=\$PATH:$(pwd)" >> ~/.bash_profile
+source ~/.bash_profile
 echo ""
 
 # Membuat folder logs jika belum ada
