@@ -7,12 +7,33 @@ YELLOW='\033[0;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No color
 
-# Menampilkan header
-echo -e "${CYAN}======================================${NC}"
-echo -e "${LIGHT_GREEN}   Multiple Network Node Installer${NC}"
-echo -e "${CYAN}         By Dasar Pemulung${NC}"
-echo -e "${CYAN}======================================${NC}"
-sleep 2
+print_banner() {
+  clear
+  echo -e """
+    ____                       
+   / __ \\____ __________ ______
+  / / / / __ \`/ ___/ __ \`/ ___/
+ / /_/ / /_/ (__  ) /_/ / /    
+/_____/_\\__,_/____/\\__,_/_/      
+
+    ____                       __
+   / __ \\___  ____ ___  __  __/ /_  ______  ____ _
+  / /_/ / _ \\/ __ \`__ \\/ / / / / / / / __ \\/ __ \`/
+ / ____/  __/ / / / / / /_/ / / /_/ / / / / /_/ / 
+/_/    \\___/_/ /_/ /_/\\__,_/_/\\__,_/_/ /_/\\__, /  
+                                         /____/    
+
+====================================================
+     Automation         : Auto Install Node 
+     Telegram Channel   : @dasarpemulung
+     Telegram Group     : @parapemulung
+====================================================
+"""
+}
+
+# Cetak banner
+print_banner
+sleep 5
 
 # Memperbarui sistem
 echo -e "${YELLOW}🖥️ Memperbarui sistem...${NC}"
