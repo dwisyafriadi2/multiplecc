@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Download dan tampilkan logo
+# Fungsi untuk mencetak banner
 print_banner() {
   clear
   echo -e """
     ____                       
-   / __ \____ __________ ______
+   / __ \\____ __________ ______
   / / / / __ \`/ ___/ __ \`/ ___/
  / /_/ / /_/ (__  ) /_/ / /    
 /_____/_\\__,_/____/\\__,_/_/      
@@ -25,11 +25,9 @@ print_banner() {
 """
 }
 
-# Call the print_banner function
+# Cetak banner
 print_banner
 sleep 5
-
-
 
 # Warna untuk output
 RED='\033[0;31m'
@@ -41,7 +39,7 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No color
 
 echo ""
-echo -e "${CYAN}🖥️ Update Software"
+echo -e "${CYAN}🖥️ Update Software...${NC}"
 sudo apt update -y
 echo ""
 
@@ -67,6 +65,14 @@ echo ""
 
 # Masuk ke direktori hasil ekstraksi
 cd multipleforlinux
+echo ""
+
+# Siapkan direktori temporer khusus di home user
+TMP_DIR=~/tmp-multiple-node
+echo -e "${CYAN}📂 Menyiapkan direktori temporer di $TMP_DIR...${NC}"
+mkdir -p $TMP_DIR
+chmod 700 $TMP_DIR
+export TMPDIR=$TMP_DIR
 echo ""
 
 echo -e "${YELLOW}🔧 Mengatur izin yang diperlukan...${NC}"
@@ -104,7 +110,6 @@ echo -e "${CYAN}⚙️ Masukkan opsi dinamis untuk bandwidth dan storage:${NC}"
 read -p "Masukkan kapasitas storage (dalam GB): " STORAGE_CAPACITY
 echo ""
 
-
 # Menjalankan multiple-node
 echo -e "${LIGHT_GREEN}🚀 Menjalankan multiple-node...${NC}"
 nohup ./multiple-node > logs/output.log 2>&1 &
@@ -121,8 +126,9 @@ fi
 
 # Mengikat akun dengan IDENTIFIER dan PIN
 echo -e "${YELLOW}🔗 Mengikat akun dengan IDENTIFIER dan PIN...${NC}"
-./multiple-cli bind --bandwidth-download 100 --identifier "$IDENTIFIER" --pin "$PIN" --storage 100 --bandwidth-upload 100
+./multiple-cli bind --bandwidth-download 100 --identifier "$IDENTIFIER" --pin "$PIN" --storage "$STORAGE_CAPACITY" --bandwidth-upload 100
 echo ""
-# join Telegram
+
+# Gabung Telegram
 echo -e "${LIGHT_GREEN}✅ Proses selesai.${NC}"
 echo -e "${CYAN}📱 Gabung ke channel Telegram untuk pembaruan: https://t.me/dasarpemulung${NC}"
