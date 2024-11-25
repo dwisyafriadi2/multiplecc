@@ -7,36 +7,13 @@ YELLOW='\033[0;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No color
 
-#!/bin/bash
+# Menampilkan header
+echo -e "${CYAN}======================================${NC}"
+echo -e "${LIGHT_GREEN}   Multiple Network Node Installer${NC}"
+echo -e "${CYAN}         By Dasar Pemulung${NC}"
+echo -e "${CYAN}======================================${NC}"
+sleep 2
 
-# Fungsi untuk mencetak banner
-print_banner() {
-  clear
-  echo -e """
-    ____                       
-   / __ \\____ __________ ______
-  / / / / __ \`/ ___/ __ \`/ ___/
- / /_/ / /_/ (__  ) /_/ / /    
-/_____/_\\__,_/____/\\__,_/_/      
-
-    ____                       __
-   / __ \\___  ____ ___  __  __/ /_  ______  ____ _
-  / /_/ / _ \\/ __ \`__ \\/ / / / / / / / __ \\/ __ \`/
- / ____/  __/ / / / / / /_/ / / /_/ / / / / /_/ / 
-/_/    \\___/_/ /_/ /_/\\__,_/_/\\__,_/_/ /_/\\__, /  
-                                         /____/    
-
-====================================================
-     Automation         : Auto Install Node 
-     Telegram Channel   : @dasarpemulung
-     Telegram Group     : @parapemulung
-====================================================
-"""
-}
-
-# Cetak banner
-print_banner
-sleep 5
 # Memperbarui sistem
 echo -e "${YELLOW}🖥️ Memperbarui sistem...${NC}"
 sudo apt update && sudo apt upgrade -y
@@ -107,7 +84,8 @@ fi
 
 # Meminta input pengguna untuk IDENTIFIER dan PIN
 echo -e "${YELLOW}📝 Masukkan informasi untuk mengikat akun:${NC}"
-read -p "Masukkan Account ID: " IDENTIFIER
+read -p "Masukkan Account IDENTIFIER: " IDENTIFIER
+read -p "Masukan Jumlah Penyimpanan: " STORAGE
 read -p "Masukkan PIN Anda: " PIN
 echo -e "${LIGHT_GREEN}✅ Proses selesai.${NC}"
 
@@ -119,7 +97,7 @@ fi
 
 # Melakukan binding account
 echo -e "${YELLOW}🔗 Mengikat akun dengan ID dan PIN...${NC}"
-./multiple-cli bind --bandwidth-download 100 --identifier "$IDENTIFIER" --pin "$PIN" --storage 200 --bandwidth-upload 100
+./multiple-cli bind --bandwidth-download 100 --identifier "$IDENTIFIER" --pin "$PIN" --storage "$STORAGE" --bandwidth-upload 100
 echo -e "${LIGHT_GREEN}✅ Proses selesai.${NC}"
 
 # Menyelesaikan instalasi
