@@ -96,11 +96,6 @@ echo -e "${CYAN}⚙️ Masukkan opsi dinamis untuk bandwidth dan storage:${NC}"
 read -p "Masukkan kapasitas storage (dalam GB): " STORAGE_CAPACITY
 echo ""
 
-# Validasi input untuk bandwidth dan storage
-if [[ -z "$DOWNLOAD_BANDWIDTH" || -z "$UPLOAD_BANDWIDTH" || -z "$STORAGE_CAPACITY" ]]; then
-    echo -e "${RED}❌ ERROR: Semua opsi bandwidth dan storage harus diisi.${NC}"
-    exit 1
-fi
 
 # Menjalankan multiple-node
 echo -e "${LIGHT_GREEN}🚀 Menjalankan multiple-node...${NC}"
